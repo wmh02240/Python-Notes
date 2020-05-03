@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://www.cnblogs.com/zhaof/p/6935473.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="PyQuery库也是一个非常强大又灵活的网页解析库，如果你有前端开发经验的，都应该接触过jQuery,那么PyQuery就是你非常绝佳的选择，PyQuery 是 Python 仿照 jQuery 的严">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园</title>
+    
+    <link rel="shortcut icon" href="https://common.cnblogs.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/bundle-simpleblue.min.css">
+    <link type="text/css" rel="stylesheet" href="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/295827.css">
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/bundle-simpleblue-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/zhaof/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/zhaof/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/zhaof/wlwmanifest.xml">
+    <script async="" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/encoder.js.下载"></script><script src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+    <script src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/blog-common.min.js.下载"></script>
+    <script>
+        var currentBlogId = 295827;
+        var currentBlogApp = 'zhaof';
+        var cb_enable_mathjax = true;
+        var isLogined = true;
+    </script>
+    <script type="text/x-mathjax-config;executed=true">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/MathJax.js.下载"></script>
+    
+<link rel="preload" href="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/f.txt"></script><script src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/pubads_impl_2019081501.js.下载" async=""></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+    <a name="top"></a>
+    
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            
+<div class="title">
+<a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/zhaof/">coder</a>
+</div>
+<div class="subtitle">
+所有的努力都值得期许，每一份梦想都应该灌溉！ qq交流群:948510543
+</div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/zhaof/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+</li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/zhaof/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                
+<span id="stats_post_count">随笔 - 
+140&nbsp;</span>
+<span id="stats_article_count">文章 - 
+3&nbsp;</span>
+<!-- <span id="stats-comment_count"></span> -->
+<span id="stats_comment_count">评论 - 
+357</span>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                <div id="post_detail">
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/zhaof/p/6935473.html">python爬虫从入门到放弃（七）之 PyQuery库的使用</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <p>PyQuery库也是一个非常强大又灵活的网页解析库，如果你有前端开发经验的，都应该接触过jQuery,那么PyQuery就是你非常绝佳的选择，PyQuery 是 Python 仿照 jQuery 的严格实现。语法与 jQuery 几乎完全相同，所以不用再去费心去记一些奇怪的方法了。</p>
+<p><em id="__mceDel">官网地址：<a href="http://pyquery.readthedocs.io/en/latest/">http://pyquery.readthedocs.io/en/latest/</a><br>jQuery参考文档：&nbsp;<a href="http://jquery.cuishifeng.cn/">http://jquery.cuishifeng.cn/</a></em></p>
+<h2 id="toc_1">初始化</h2>
+<p>初始化的时候一般有三种传入方式：传入字符串，传入url,传入文件</p>
+<p><strong>字符串初始化</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div&gt;
+    &lt;ul&gt;
+         &lt;li class="item-0"&gt;first item&lt;/li&gt;
+         &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+     &lt;/ul&gt;
+&lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(doc)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(type(doc))
+</span><span style="color: #0000ff;">print</span>(doc(<span style="color: #800000;">'</span><span style="color: #800000;">li</span><span style="color: #800000;">'</span>))</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果如下：</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224201664-382941136.png" alt=""></p>
+<p>由于PyQuery写起来比较麻烦，所以我们导入的时候都会添加别名：<br>from pyquery import PyQuery as pq</p>
+<p>这里我们可以知道上述代码中的doc其实就是一个pyquery对象，我们可以通过doc可以进行元素的选择，其实这里就是一个css选择器，所以CSS选择器的规则都可以用，直接doc(标签名)就可以获取所有的该标签的内容，如果想要获取class 则doc('.class_name'),如果是id则doc('#id_name')....</p>
+<p><strong>URL初始化</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+
+doc </span>= pq(url=<span style="color: #800000;">"</span><span style="color: #800000;">http://www.baidu.com</span><span style="color: #800000;">"</span>,encoding=<span style="color: #800000;">'</span><span style="color: #800000;">utf-8</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span>(doc(<span style="color: #800000;">'</span><span style="color: #800000;">head</span><span style="color: #800000;">'</span>))</pre>
+</div>
+<p><strong>文件初始化</strong></p>
+<p>我们在pq()这里可以传入url参数也可以传入文件参数，当然这里的文件通常是一个html文件，例如：pq(filename='index.html')</p>
+<h2 id="toc_2">基本的CSS选择器</h2>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div id="container"&gt;
+    &lt;ul class="list"&gt;
+         &lt;li class="item-0"&gt;first item&lt;/li&gt;
+         &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+     &lt;/ul&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+</span><span style="color: #0000ff;">print</span>(doc(<span style="color: #800000;">'</span><span style="color: #800000;">#container .list li</span><span style="color: #800000;">'</span>))</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这里我们需要注意的一个地方是doc('#container .list li')，这里的三者之间的并不是必须要挨着，只要是层级关系就可以,下面是常用的CSS选择器方法：</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224304383-1430515174.png" alt=""></p>
+<h3 id="toc_3">查找元素</h3>
+<p><strong>子元素</strong><br>children,find<br>代码例子：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div id="container"&gt;
+    &lt;ul class="list"&gt;
+         &lt;li class="item-0"&gt;first item&lt;/li&gt;
+         &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+     &lt;/ul&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+items </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.list</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(type(items))
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(items)
+lis </span>= items.find(<span style="color: #800000;">'</span><span style="color: #800000;">li</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(type(lis))
+</span><span style="color: #0000ff;">print</span>(lis)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>运行结果如下</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224334118-479989953.png" alt=""></p>
+<p>从结果里我们也可以看出通过pyquery找到结果其实还是一个pyquery对象，可以继续查找，上述中的代码中的items.find('li') 则表示查找ul里的所有的li标签<br>当然这里通过children可以实现同样的效果,并且通过.children方法得到的结果也是一个pyquery对象</p>
+<div class="cnblogs_code">
+<pre>li =<span style="color: #000000;"> items.children()
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(type(li))
+</span><span style="color: #0000ff;">print</span>(li)</pre>
+</div>
+<p>同时在children里也可以用CSS选择器</p>
+<p>li2 = items.<span class="hljs-function"><span class="hljs-title">children<span class="hljs-params">(<span class="hljs-string">'.active') <span class="hljs-function"><span class="hljs-title">print<span class="hljs-params">(li2)</span></span></span></span></span></span></span></p>
+<p><strong>父元素</strong><br>parent,parents方法</p>
+<p>通过.parent就可以找到父元素的内容，例子如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div id="container"&gt;
+    &lt;ul class="list"&gt;
+         &lt;li class="item-0"&gt;first item&lt;/li&gt;
+         &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+     &lt;/ul&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+items </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.list</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+container </span>=<span style="color: #000000;"> items.parent()
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(type(container))
+</span><span style="color: #0000ff;">print</span>(container)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>通过.parents就可以找到祖先节点的内容，例子如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    &lt;div id="container"&gt;
+        &lt;ul class="list"&gt;
+             &lt;li class="item-0"&gt;first item&lt;/li&gt;
+             &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+items </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.list</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+parents </span>=<span style="color: #000000;"> items.parents()
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(type(parents))
+</span><span style="color: #0000ff;">print</span>(parents)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果如下：从结果我们可以看出返回了两部分内容，一个是的父节点的信息，一个是父节点的父节点的信息即祖先节点的信息</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224507852-1201836861.png" alt=""></p>
+<p>同样我们通过.parents查找的时候也可以添加css选择器来进行内容的筛选</p>
+<p><strong>兄弟元素</strong><br>siblings</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    &lt;div id="container"&gt;
+        &lt;ul class="list"&gt;
+             &lt;li class="item-0"&gt;first item&lt;/li&gt;
+             &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+li </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.list .item-0.active</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span>(li.siblings())</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>代码中doc('.list .item-0.active') 中的.tem-0和.active是紧挨着的，所以表示是并的关系，这样满足条件的就剩下一个了：thired item的那个标签了<br>这样在通过.siblings就可以获取所有的兄弟标签，当然这里是不包括自己的<br>同样的在.siblings()里也是可以通过CSS选择器进行筛选</p>
+<h3 id="toc_4">遍历</h3>
+<p><strong>单个元素</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    &lt;div id="container"&gt;
+        &lt;ul class="list"&gt;
+             &lt;li class="item-0"&gt;first item&lt;/li&gt;
+             &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+&lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+li </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.item-0.active</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(li)
+
+lis </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">li</span><span style="color: #800000;">'</span><span style="color: #000000;">).items()
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(type(lis))
+</span><span style="color: #0000ff;">for</span> li <span style="color: #0000ff;">in</span><span style="color: #000000;"> lis:
+    </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(type(li))
+    </span><span style="color: #0000ff;">print</span>(li)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>运行结果如下：从结果中我们可以看出通过items()可以得到一个生成器，并且我们通过for循环得到的每个元素依然是一个pyquery对象。</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224603305-1442642670.png" alt=""></p>
+<h3 id="toc_5">获取信息</h3>
+<p><strong>获取属性</strong><br>pyquery对象.attr(属性名)<br>pyquery对象.attr.属性名</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    &lt;div id="container"&gt;
+        &lt;ul class="list"&gt;
+             &lt;li class="item-0"&gt;first item&lt;/li&gt;
+             &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+a </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.item-0.active a</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(a)
+</span><span style="color: #0000ff;">print</span>(a.attr(<span style="color: #800000;">'</span><span style="color: #800000;">href</span><span style="color: #800000;">'</span><span style="color: #000000;">))
+</span><span style="color: #0000ff;">print</span>(a.attr.href)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224631321-2027459284.png" alt=""></p>
+<p>所以这里我们也可以知道获得属性值的时候可以直接a.attr(属性名)或者a.attr.属性名</p>
+<p><strong>获取文本</strong><br>在很多时候我们是需要获取被html标签包含的文本信息,通过.text()就可以获取文本信息</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    &lt;div id="container"&gt;
+        &lt;ul class="list"&gt;
+             &lt;li class="item-0"&gt;first item&lt;/li&gt;
+             &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+a </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.item-0.active a</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(a)
+</span><span style="color: #0000ff;">print</span>(a.text())</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果如下：</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224713899-1603188065.png" alt=""></p>
+<p><strong>获取html</strong><br>我们通过.html()的方式可以获取当前标签所包含的html信息，例子如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    &lt;div id="container"&gt;
+        &lt;ul class="list"&gt;
+             &lt;li class="item-0"&gt;first item&lt;/li&gt;
+             &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+li </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.item-0.active</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(li)
+</span><span style="color: #0000ff;">print</span>(li.html())</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果如下：</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224749758-263875006.png" alt=""></p>
+<h3 id="toc_6">DOM操作</h3>
+<p><strong>addClass、removeClass</strong><br>熟悉前端操作的话，通过这两个操作可以添加和删除属性</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    &lt;div id="container"&gt;
+        &lt;ul class="list"&gt;
+             &lt;li class="item-0"&gt;first item&lt;/li&gt;
+             &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+li </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.item-0.active</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(li)
+li.removeClass(</span><span style="color: #800000;">'</span><span style="color: #800000;">active</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(li)
+li.addClass(</span><span style="color: #800000;">'</span><span style="color: #800000;">active</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span>(li)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>attr,css</strong><br>同样的我们可以通过attr给标签添加和修改属性，<br>如果之前没有该属性则是添加，如果有则是修改<br>我们也可以通过css添加一些css属性，这个时候，标签的属性里会多一个style属性</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    &lt;div id="container"&gt;
+        &lt;ul class="list"&gt;
+             &lt;li class="item-0"&gt;first item&lt;/li&gt;
+             &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+             &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+li </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.item-0.active</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(li)
+li.attr(</span><span style="color: #800000;">'</span><span style="color: #800000;">name</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">link</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(li)
+li.css(</span><span style="color: #800000;">'</span><span style="color: #800000;">font-size</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">14px</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span>(li)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果如下：</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224849539-264735724.png" alt=""></p>
+<p>&nbsp;</p>
+<p><strong>remove</strong><br>有时候我们获取文本信息的时候可能并列的会有一些其他标签干扰，这个时候通过remove就可以将无用的或者干扰的标签直接删除，从而方便操作</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>html = <span style="color: #800000;">'''</span><span style="color: #800000;">
+&lt;div class="wrap"&gt;
+    Hello, World
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+ &lt;/div&gt;
+</span><span style="color: #800000;">'''</span>
+<span style="color: #0000ff;">from</span> pyquery <span style="color: #0000ff;">import</span><span style="color: #000000;"> PyQuery as pq
+doc </span>=<span style="color: #000000;"> pq(html)
+wrap </span>= doc(<span style="color: #800000;">'</span><span style="color: #800000;">.wrap</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(wrap.text())
+wrap.find(</span><span style="color: #800000;">'</span><span style="color: #800000;">p</span><span style="color: #800000;">'</span><span style="color: #000000;">).remove()
+</span><span style="color: #0000ff;">print</span>(wrap.text())</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果如下：</p>
+<p><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/997599-20170602224940727-1065731989.png" alt=""></p>
+<p>pyquery中DOM的其他api操作参考：<br><a href="http://pyquery.readthedocs.io/en/latest/api.html">http://pyquery.readthedocs.io/en/latest/api.html</a></p>
+<p>&nbsp;</p>
+</div>
+<div id="MySignature" style="display: block;">所有的努力都值得期许，每一份梦想都应该灌溉！</div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/zhaof/category/1007686.html" target="_blank">爬虫</a></div>
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/zhaof/tag/%E7%88%AC%E8%99%AB/">爬虫</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6935473,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" href="javascript:void(0);">已关注</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/zhaof/" target="_blank"><img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/20170608150835.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/zhaof/">python修行路</a><br>
+            <a href="https://home.cnblogs.com/u/zhaof/followees/">关注 - 33</a><br>
+            <a href="https://home.cnblogs.com/u/zhaof/followers/">粉丝 - 1596</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                我在关注他 <a href="javascript:void(0);" onclick="unfollow(&#39;f3c162f5-6351-e611-9fc1-ac853d9f53cc&#39;);return false;">取消关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6935473,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">4</span>
+    </div>
+    <div class="buryit" onclick="votePost(6935473,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/zhaof/p/6930955.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/zhaof/p/6930955.html" title="发布于 2017-06-01 21:59">python爬虫从入门到放弃（六）之 BeautifulSoup库的使用</a>
+    <br>
+    <a href="https://www.cnblogs.com/zhaof/p/6953241.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/zhaof/p/6953241.html" title="发布于 2017-06-06 19:42">python爬虫从入门到放弃（八）之 Selenium库的使用</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2017-06-02 22:51</span>&nbsp;<a href="https://www.cnblogs.com/zhaof/">python修行路</a> 阅读(<span id="post_view_count">29766</span>) 评论(<span id="post_comment_count">5</span>) <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6935473" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(6935473); return false;">收藏</a>
+</div>
+        </div>
+<script src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/highlight.min.js.下载"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 295827, cb_blogApp = 'zhaof', cb_blogUserGuid = 'f3c162f5-6351-e611-9fc1-ac853d9f53cc';
+    var cb_entryId = 6935473, cb_entryCreatedDate = '2017-06-02 22:51', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder">
+
+<div id="comment_pager_top">
+    
+</div>
+
+
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(3706205, &#39;x6TrqQYQtcZt5/6C8fyPr8n4502t1FErTcT2xKhoX/JUfMLfztgqPg==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(3706205, &#39;x6TrqQYQtcZt5/6C8fyPr8n4502t1FErTcT2xKhoX/JUfMLfztgqPg==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6935473.html#3706205" class="layer">#1楼</a>
+<a name="3706205" id="comment_anchor_3706205"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2017-06-03 11:59</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_3706205" href="https://www.cnblogs.com/hongten/" target="_blank">Hongten</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_3706205" class="blog_comment_body">
+    thanks for sharing.
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;3706205&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;3706205&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_3706205_avatar" style="display:none">
+            https://pic.cnblogs.com/face/284226/20150204161515.png
+        </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(3706215, &#39;Z/deEcOGmzAcJZXKweSUd2wokGRK+yHu8wF+mh2sXEAj9oxtAsVGxA==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(3706215, &#39;Z/deEcOGmzAcJZXKweSUd2wokGRK+yHu8wF+mh2sXEAj9oxtAsVGxA==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6935473.html#3706215" class="layer">#2楼</a>
+<a name="3706215" id="comment_anchor_3706215"></a>
+[<span class="louzhu">楼主</span>]
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2017-06-03 12:16</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_3706215" href="https://www.cnblogs.com/zhaof/" target="_blank">python修行路</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_3706215" class="blog_comment_body">
+    <a href="https://www.cnblogs.com/zhaof/p/6935473.html#3706205" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3706205);">@</a>
+Hongten<br>客气客气
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;3706215&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;3706215&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_3706215_avatar" style="display:none">
+            https://pic.cnblogs.com/face/997599/20170608150835.png
+        </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(3796085, &#39;FVACQHMcDCGVnXhcYeLUS2OmlkBHaPD1RZvF94tx6Rq7G/H1XZGX7w==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(3796085, &#39;FVACQHMcDCGVnXhcYeLUS2OmlkBHaPD1RZvF94tx6Rq7G/H1XZGX7w==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6935473.html#3796085" class="layer">#3楼</a>
+<a name="3796085" id="comment_anchor_3796085"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2017-09-25 17:19</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_3796085" href="https://www.cnblogs.com/hoomob/" target="_blank">尼莫船长</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_3796085" class="blog_comment_body">
+    这个有用 顶！
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;3796085&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;3796085&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_3796085_avatar" style="display:none">
+            https://pic.cnblogs.com/face/754576/20160504162134.png
+        </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(3865805, &#39;YSb1V2aeiPyCdzsxOCPlFwghIEu7j+vKJBxg8+aTcGZyrOt8wOeoRA==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(3865805, &#39;YSb1V2aeiPyCdzsxOCPlFwghIEu7j+vKJBxg8+aTcGZyrOt8wOeoRA==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6935473.html#3865805" class="layer">#4楼</a>
+<a name="3865805" id="comment_anchor_3865805"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2017-12-14 14:52</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_3865805" href="https://www.cnblogs.com/hui-2016/" target="_blank">hui_2016</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_3865805" class="blog_comment_body">
+    请问博主:我在看DOM操作时你写的是<br>li.removeClass('active')<br>li.addClass('active')<br>而我安装的pyquery没有这两个方法<br>倒是有:<br>remove_class()<br>add_class()<br>,我测试了下结果和你的结果是一样的,是什么原因?是pyquery版本不一样 语法有些不同?
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;3865805&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;3865805&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_3865805_avatar" style="display:none">
+            https://pic.cnblogs.com/face/1235321/20170928121641.png
+        </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(4007364, &#39;3RBito2B7PaB0BlTCayM/0zSnu1BsrvDl7JB0mHXZ4eyVGcoOHpbJQ==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(4007364, &#39;3RBito2B7PaB0BlTCayM/0zSnu1BsrvDl7JB0mHXZ4eyVGcoOHpbJQ==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6935473.html#4007364" class="layer">#5楼</a>
+<a name="4007364" id="comment_anchor_4007364"></a>
+
+        <span id="comment-maxId" style="display:none">4007364</span>
+        <span id="comment-maxDate" style="display:none">2018/6/28 上午9:49:11</span>
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2018-06-28 09:49</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_4007364" href="https://home.cnblogs.com/u/1429954/" target="_blank">不死之虫</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_4007364" class="blog_comment_body">
+    和崔庆才的爬虫系列文章是一样。。。
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;4007364&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;4007364&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        
+
+                </div>
+            </div>
+        </div>
+
+
+<div id="comment_pager_bottom">
+    
+</div>
+</div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/zhaof/p/6935473.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/zhaof/p/6935473.html#top">返回顶部</a></div>
+    <div id="comment_form_container">
+<script type="text/javascript" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+    昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="总是很懵逼">
+</p>
+<div class="commentbox_main">
+    <div class="commentbox_title">
+        <div class="commentbox_title_left">评论内容：</div>
+        <div class="commentbox_title_right">
+            <img id="ubb_quote" class="comment_icon" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+            <img id="ubb_bold" class="comment_icon" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+            <img id="ubb_url" class="comment_icon" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+            <img id="ubb_indent" class="comment_icon" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+            <img id="ubb_code" class="comment_icon" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+            <img id="ubb_img" class="comment_icon" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+        </div>
+    </div>
+    <div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+    <input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+    <span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+    <a href="javascript:void(0);" onclick="return logout();">退出</a>
+            <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+    [Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+    <span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+    <span id="span_parent_id"></span>
+    <span id="span_comment_replyto"></span>
+    <span id="span_comment_posted"></span>
+</div>
+</div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="http://clickc.admaster.com.cn/c/a131574,b3595115,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为云微认证&#39;)">【推荐】零基础轻松玩转云上产品，获壕礼加返百元大礼</a><br><a href="http://clickc.admaster.com.cn/c/a131575,b3595121,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-物联网&#39;)">【推荐】华为IoT平台开发者套餐9.9元起，购买即送免费课程</a><br><a href="https://www.aliyun90.com/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-aliyun90&#39;)">【推荐】ALIYUN90% | 免认证  9秒注册阿里云  即开即用</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/gpt.js.下载"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;"></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="python爬虫从入门到放弃（七）之PyQuery库的使用" href="https://www.cnblogs.com/111testing/p/10325312.html" target="_blank" onclick="clickRecomItmem(10325312)">python爬虫从入门到放弃（七）之PyQuery库的使用</a><br>·  <a title="PyQuery库的使用" href="https://www.cnblogs.com/xiao-xue-di/p/10250746.html" target="_blank" onclick="clickRecomItmem(10250746)">PyQuery库的使用</a><br>·  <a title="python爬虫pyquery库详解" href="https://www.cnblogs.com/wlx97e6/p/10083035.html" target="_blank" onclick="clickRecomItmem(10083035)">python爬虫pyquery库详解</a><br>·  <a title="PyQuery库的使用" href="https://www.cnblogs.com/dyytsoft/p/10607682.html" target="_blank" onclick="clickRecomItmem(10607682)">PyQuery库的使用</a><br>·  <a title="PyQuery库的使用" href="https://www.cnblogs.com/cjj-zyj/p/10045001.html" target="_blank" onclick="clickRecomItmem(10045001)">PyQuery库的使用</a><br></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+            <script>
+                if (new Date() >= new Date(2018, 9, 13)) {
+                    googletag.cmd.push(function () { googletag.display("div-gpt-ad-1539008685004-0"); });
+                }
+            </script>
+        </div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/629982/" target="_blank">中国太阳能成本能比现有电力成本更低</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/629981/" target="_blank">新加坡回击马斯克：想环保就坐公交，不是开特斯拉</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/629980/" target="_blank">人类胚胎着床过程首次被解析</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/629979/" target="_blank">一线｜科大讯飞半年报：毛利21.33亿元，同比增长超三成</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/629978/" target="_blank">远古火星气候温暖 还有暴风雨</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>    </div>
+</div>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                
+<div id="sidebar_news" class="newsItem">
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    <br>
+<p style="font-size: 16px; padding: 10px; margin-bottom: 10px; background: #FFFFFF; border: 5px dashed #87CEEB">&nbsp;&nbsp;所有的努力都值得期许，每一份梦想都应该灌溉！
+</p>
+<hr>
+
+
+<img src="./python爬虫从入门到放弃（七）之 PyQuery库的使用 - python修行路 - 博客园_files/o_微信图片_20190611092123.jpg" width="250px">
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/zhaof/">
+            python修行路
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/zhaof/" title="入园时间：2016-07-24">
+            3年
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/zhaof/followers/">
+            1596
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/zhaof/followees/">
+            33
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0);" onclick="unfollow(&#39;f3c162f5-6351-e611-9fc1-ac853d9f53cc&#39;);">-取消关注</a></div>
+        <script>getFollowStatus('f3c162f5-6351-e611-9fc1-ac853d9f53cc');</script>
+    </div>
+</div></div>
+
+                <div id="calendar"><div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/07/22&#39;); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2019年8月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/09/22&#39;); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">28</td>
+                            <td class="CalOtherMonthDay" align="center">29</td>
+                            <td class="CalOtherMonthDay" align="center">30</td>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                        <td class="" align="center">
+                            2
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        3
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            4
+                        </td>
+                            <td class="" align="center">
+                                5
+                            </td>
+                            <td class="" align="center">
+                                6
+                            </td>
+                            <td class="" align="center">
+                                7
+                            </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                            <td class="" align="center">
+                                9
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            10
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            11
+                        </td>
+                            <td class="" align="center">
+                                12
+                            </td>
+                            <td class="" align="center">
+                                <a href="https://www.cnblogs.com/zhaof/archive/2019/08/13.html"><u>13</u></a>
+                            </td>
+                            <td class="" align="center">
+                                14
+                            </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                            <td class="" align="center">
+                                16
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            17
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            18
+                        </td>
+                            <td class="" align="center">
+                                19
+                            </td>
+                            <td class="" align="center">
+                                20
+                            </td>
+                            <td class="" align="center">
+                                21
+                            </td>
+                            <td class="CalTodayDay" align="center">
+                                22
+                            </td>
+                            <td class="" align="center">
+                                23
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            24
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            25
+                        </td>
+                            <td class="" align="center">
+                                26
+                            </td>
+                            <td class="" align="center">
+                                27
+                            </td>
+                            <td class="" align="center">
+                                28
+                            </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                            <td class="" align="center">
+                                30
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            31
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            1
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                4
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                5
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            7
+                        </td>
+                </tr>
+    </tbody>
+</table></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn">
+
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    
+</div>
+
+<!-- 常用链接 -->
+
+
+<!-- 最新随笔 -->
+<div id="sidebar_recentposts" class="sidebar-block">
+    
+<div class="catListEssay">
+    <h3 class="catListTitle">最新随笔</h3>
+    <ul>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/11346412.html">1.golang常用的http请求操作</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10581972.html">2.关于asyncio知识（四）</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10497070.html">3.关于asyncio知识（二）</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10479461.html">4.Python Every Class Needs a __repr__</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10446623.html">5.关于asyncio知识（一）</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10182903.html">6.linux环境快速安装python3</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10072934.html">7.从yield 到yield from再到python协程</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10024264.html">8.PEP 492 -- Coroutines with async and await syntax 翻译</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10031945.html">9.一次python 内存泄漏解决过程</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/9977179.html">10.关于python协程中aiorwlock 使用问题</a>
+
+                </li>
+    </ul>
+</div>
+
+</div>
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+<div class="catListTag">
+    <h3 class="catListTitle">我的标签</h3>
+    <ul>
+        
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/%E7%88%AC%E8%99%AB/">爬虫</a>(29)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/go%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">go基础学习</a>(25)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/asyncio/">asyncio</a>(7)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/java%E5%9F%BA%E7%A1%80/">java基础</a>(5)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/python%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">python并发编程</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/go%E5%AE%9E%E7%8E%B0%E6%B5%B7%E9%87%8F%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86/">go实现海量日志收集</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/SocketServer/">SocketServer</a>(3)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/go%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">go源码学习</a>(2)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/git/">git</a>(2)
+        </li>
+            <li>
+                <a href="https://www.cnblogs.com/zhaof/tag/">更多</a>
+            </li>
+
+    </ul>
+</div>
+
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    
+<div class="catListBlogRank">
+    <h3 class="catListTitle">积分与排名</h3>
+    <ul>
+        <li class="liScore">
+            积分 - 
+247694
+        </li>
+        <li class="liRank">
+            排名 - 
+1413
+        </li>
+    </ul>
+</div>
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div class="catListPostCategory">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+<span style="font-size:11px;font-weight:normal">(144)</span>
+
+
+            </h3>
+            <ul>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/918993.html" rel="">
+    Docker成长之路(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/1007401.html" rel="">
+    git(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/1015557.html" rel="">
+    Go(28)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/883845.html" rel="">
+    linux成长之路(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/858301.html" rel="">
+    python成长之路(72)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/1217469.html" rel="">
+    操作系统(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/1007686.html" rel="">
+    爬虫(27)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/926357.html" rel="">
+    生活感悟(5)
+</a>
+
+                            
+
+                        </li>
+                        
+            </ul>
+        </div>
+        <div class="catListPostArchive">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+<span style="font-size:11px;font-weight:normal">(140)</span>
+
+
+            </h3>
+            <ul>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2019/08.html" rel="">
+    2019年8月(1)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2019/03.html" rel="">
+    2019年3月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2019/02.html" rel="">
+    2019年2月(1)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/12.html" rel="">
+    2018年12月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/11.html" rel="">
+    2018年11月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/10.html" rel="">
+    2018年10月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/09.html" rel="">
+    2018年9月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/07.html" rel="">
+    2018年7月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/06.html" rel="">
+    2018年6月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/05.html" rel="">
+    2018年5月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/04.html" rel="">
+    2018年4月(6)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/03.html" rel="">
+    2018年3月(12)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/02.html" rel="">
+    2018年2月(6)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/01.html" rel="">
+    2018年1月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/12.html" rel="">
+    2017年12月(5)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/11.html" rel="">
+    2017年11月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/10.html" rel="">
+    2017年10月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/09.html" rel="">
+    2017年9月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/08.html" rel="">
+    2017年8月(7)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/07.html" rel="">
+    2017年7月(12)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/06.html" rel="">
+    2017年6月(11)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/05.html" rel="">
+    2017年5月(7)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/03.html" rel="">
+    2017年3月(1)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/02.html" rel="">
+    2017年2月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/01.html" rel="">
+    2017年1月(7)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/12.html" rel="">
+    2016年12月(8)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/11.html" rel="">
+    2016年11月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/10.html" rel="">
+    2016年10月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/09.html" rel="">
+    2016年9月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/08.html" rel="">
+    2016年8月(6)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/07.html" rel="">
+    2016年7月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+            </ul>
+        </div>
+        <div class="catList">
+            <h3 class="catListTitle">
+                
+
+友链
+<span style="font-size:11px;font-weight:normal">(0)</span>
+
+
+            </h3>
+            <ul>
+                        <li>
+                            
+<a href="https://fashengba.com/" rel="nofollow">
+    发声吧
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.syncd.cn/" rel="nofollow">
+    个人博客站
+</a>
+
+                            
+
+                        </li>
+                        
+            </ul>
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    
+<div id="recent_comments_wrap">
+    <h3 class="catListTitle">最新评论</h3>
+    <div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/8126306.html#4329522">1. Re:让你用sublime写出最完美的python代码--windows环境</a></li>
+                    <li class="recent_comment_body">大佬，最后一步设置，掉了大括号。</li>
+                    <li class="recent_comment_author">--xiaoxiao同学</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/7345856.html#4322900">2. Re:Python爬虫从入门到放弃（二十三）之 Scrapy的中间件Downloader Middleware实现User-Agent随机切换</a></li>
+                    <li class="recent_comment_body">我还是不懂 RandomUserAgentMiddleware 下的 process_request 就能随机切换UA 他不是只在请求头设置了 User-Agent=“random” 吗 为什么就能随...</li>
+                    <li class="recent_comment_author">--性感码农在线代码</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/7306374.html#4322866">3. Re:Python爬虫从入门到放弃（二十）之 Scrapy分布式原理</a></li>
+                    <li class="recent_comment_body">请问为什么不配置pipeline 掉进redis不是更好吗？</li>
+                    <li class="recent_comment_author">--性感码农在线代码</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/8490045.html#4319684">4. Re:python中重要的模块--asyncio</a></li>
+                    <li class="recent_comment_body">厉害啊 博主  望以后可以多多交流</li>
+                    <li class="recent_comment_author">--_尼欧`</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/8126306.html#4316805">5. Re:让你用sublime写出最完美的python代码--windows环境</a></li>
+                    <li class="recent_comment_body">可以可以，真的很详细</li>
+                    <li class="recent_comment_author">--我不玩博客</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    
+<div id="topview_posts_wrap">
+    <h3 class="catListTitle">阅读排行榜</h3>
+    <div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6953241.html">
+                            1. python爬虫从入门到放弃（八）之 Selenium库的使用(196382)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6930955.html">
+                            2. python爬虫从入门到放弃（六）之 BeautifulSoup库的使用(115280)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6910871.html">
+                            3. python爬虫从入门到放弃（三）之 Urllib库的基本使用(109098)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6898138.html">
+                            4. python爬虫从入门到放弃（二）之爬虫的原理(101338)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6915127.html">
+                            5. python爬虫从入门到放弃（四）之 Requests库的基本使用(78866)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    
+<div id="topfeedback_posts_wrap">
+    <h3 class="catListTitle">评论排行榜</h3>
+    <div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/7326260.html">
+                            1. Python爬虫从入门到放弃（二十二）之 爬虫与反爬虫大战(30)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6925674.html">
+                            2. python爬虫从入门到放弃（五）之 正则的基本使用(25)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6915127.html">
+                            3. python爬虫从入门到放弃（四）之 Requests库的基本使用(20)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/8490045.html">
+                            4. python中重要的模块--asyncio(18)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/8126306.html">
+                            5. 让你用sublime写出最完美的python代码--windows环境(16)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/7326260.html">
+                                1. Python爬虫从入门到放弃（二十二）之 爬虫与反爬虫大战(28)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/6953241.html">
+                                2. python爬虫从入门到放弃（八）之 Selenium库的使用(22)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/6915127.html">
+                                3. python爬虫从入门到放弃（四）之 Requests库的基本使用(22)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/6898138.html">
+                                4. python爬虫从入门到放弃（二）之爬虫的原理(14)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/6897393.html">
+                                5. python爬虫从入门到放弃（一）之初识爬虫(12)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright © 2019 python修行路
+<br><span id="poweredby">Powered by .NET Core 3.0 Preview 8 on Linux</span>
+
+    </div>
+</div>
+
+    
+
+
+</body></html>

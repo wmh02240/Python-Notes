@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://www.cnblogs.com/zhaof/p/6897393.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="整理这个文档的初衷是自己开始学习的时候没有找到好的教程和文本资料，自己整理一份这样的资料希望能对小伙伴有帮助 什么是爬虫？ 网络爬虫（又被称为网页蜘蛛，网络机器人，在FOAF社区中间，更经常的称为网页">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园</title>
+    
+    <link rel="shortcut icon" href="https://common.cnblogs.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/bundle-simpleblue.min.css">
+    <link type="text/css" rel="stylesheet" href="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/295827.css">
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/bundle-simpleblue-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/zhaof/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/zhaof/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/zhaof/wlwmanifest.xml">
+    <script async="" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/analytics.js.下载"></script><script src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+    <script src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/blog-common.min.js.下载"></script>
+    <script>
+        var currentBlogId = 295827;
+        var currentBlogApp = 'zhaof';
+        var cb_enable_mathjax = true;
+        var isLogined = true;
+    </script>
+    <script type="text/x-mathjax-config;executed=true">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/MathJax.js.下载"></script>
+    
+<link rel="preload" href="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/f.txt"></script><script src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/pubads_impl_2019080801.js.下载" async=""></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+    <a name="top"></a>
+    
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            
+<div class="title">
+<a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/zhaof/">coder</a>
+</div>
+<div class="subtitle">
+所有的努力都值得期许，每一份梦想都应该灌溉！ qq交流群:948510543
+</div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/zhaof/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+</li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/zhaof/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                
+<span id="stats_post_count">随笔 - 
+140&nbsp;</span>
+<span id="stats_article_count">文章 - 
+3&nbsp;</span>
+<!-- <span id="stats-comment_count"></span> -->
+<span id="stats_comment_count">评论 - 
+357</span>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                <div id="post_detail">
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/zhaof/p/6897393.html">python爬虫从入门到放弃（一）之初识爬虫</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <p>整理这个文档的初衷是自己开始学习的时候没有找到好的教程和文本资料，自己整理一份这样的资料希望能对小伙伴有帮助</p>
+<p>&nbsp;</p>
+<h2 id="toc_1">什么是爬虫？</h2>
+<p>网络爬虫（又被称为网页蜘蛛，网络机器人，在FOAF社区中间，更经常的称为网页追逐者），是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。另外一些不常使用的名字还有蚂蚁、自动索引、模拟程序或者蠕虫。</p>
+<p>其实通俗的讲就是通过程序去获取web页面上自己想要的数据，也就是自动抓取数据</p>
+<h2 id="toc_2">爬虫可以做什么？</h2>
+<p>你可以爬去妹子的图片，爬取自己想看看的视频。。等等你想要爬取的数据，只要你能通过浏览器访问的数据都可以通过爬虫获取</p>
+<h2 id="toc_3">爬虫的本质是什么？</h2>
+<p>模拟浏览器打开网页，获取网页中我们想要的那部分数据</p>
+<p>浏览器打开网页的过程：<br>当你在浏览器中输入地址后，经过DNS服务器找到服务器主机，向服务器发送一个请求，服务器经过解析后发送给用户浏览器结果，包括html,js,css等文件内容，浏览器解析出来最后呈现给用户在浏览器上看到的结果</p>
+<p>所以用户看到的浏览器的结果就是由HTML代码构成的，我们爬虫就是为了获取这些内容，通过分析和过滤html代码，从中获取我们想要资源（文本，图片，视频.....）</p>
+</div>
+<div id="MySignature" style="display: block;">所有的努力都值得期许，每一份梦想都应该灌溉！</div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/zhaof/category/1007686.html" target="_blank">爬虫</a></div>
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/zhaof/tag/%E7%88%AC%E8%99%AB/">爬虫</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6897393,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" href="javascript:void(0);">已关注</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/zhaof/" target="_blank"><img src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/20170608150835.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/zhaof/">python修行路</a><br>
+            <a href="https://home.cnblogs.com/u/zhaof/followees/">关注 - 33</a><br>
+            <a href="https://home.cnblogs.com/u/zhaof/followers/">粉丝 - 1593</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                我在关注他 <a href="javascript:void(0);" onclick="unfollow(&#39;f3c162f5-6351-e611-9fc1-ac853d9f53cc&#39;);return false;">取消关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6897393,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">11</span>
+    </div>
+    <div class="buryit" onclick="votePost(6897393,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/zhaof/p/6896723.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/zhaof/p/6896723.html" title="发布于 2017-05-23 23:09">git使用(二)----创建版本库</a>
+    <br>
+    <a href="https://www.cnblogs.com/zhaof/p/6898138.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/zhaof/p/6898138.html" title="发布于 2017-05-24 11:44">python爬虫从入门到放弃（二）之爬虫的原理</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2017-05-24 09:42</span>&nbsp;<a href="https://www.cnblogs.com/zhaof/">python修行路</a> 阅读(<span id="post_view_count">35096</span>) 评论(<span id="post_comment_count">8</span>) <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6897393" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(6897393); return false;">收藏</a>
+</div>
+        </div>
+<script src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/highlight.min.js.下载"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 295827, cb_blogApp = 'zhaof', cb_blogUserGuid = 'f3c162f5-6351-e611-9fc1-ac853d9f53cc';
+    var cb_entryId = 6897393, cb_entryCreatedDate = '2017-05-24 09:42', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder">
+
+<div id="comment_pager_top">
+    
+</div>
+
+
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(3752908, &#39;zUPJAy824MpQwYGcDPshrYO4jSeW3QhsSNpXgXlkPBZKUdfA1hzd3A==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(3752908, &#39;zUPJAy824MpQwYGcDPshrYO4jSeW3QhsSNpXgXlkPBZKUdfA1hzd3A==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6897393.html#3752908" class="layer">#1楼</a>
+<a name="3752908" id="comment_anchor_3752908"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2017-08-08 14:28</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_3752908" href="https://www.cnblogs.com/Worssmagee1002/" target="_blank">怪咖在骚动</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_3752908" class="blog_comment_body">
+    开始学习爬虫，感谢整理！
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;3752908&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;3752908&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_3752908_avatar" style="display:none">
+            https://pic.cnblogs.com/face/907057/20170815175005.png
+        </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(3752910, &#39;Z/deEcOGmzAcJZXKweSUd2wokGRK+yHu8wF+mh2sXEAj9oxtAsVGxA==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(3752910, &#39;Z/deEcOGmzAcJZXKweSUd2wokGRK+yHu8wF+mh2sXEAj9oxtAsVGxA==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6897393.html#3752910" class="layer">#2楼</a>
+<a name="3752910" id="comment_anchor_3752910"></a>
+[<span class="louzhu">楼主</span>]
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2017-08-08 14:29</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_3752910" href="https://www.cnblogs.com/zhaof/" target="_blank">python修行路</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_3752910" class="blog_comment_body">
+    <a href="https://www.cnblogs.com/zhaof/p/6897393.html#3752908" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3752908);">@</a>
+怪咖在骚动<br>客气了，相互学习
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;3752910&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;3752910&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_3752910_avatar" style="display:none">
+            https://pic.cnblogs.com/face/997599/20170608150835.png
+        </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(3824983, &#39;atUVbwK9de/XtlDYptVc9gGqX9vPQKWI7dlF/c8/kap97ke5VWdWSA==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(3824983, &#39;atUVbwK9de/XtlDYptVc9gGqX9vPQKWI7dlF/c8/kap97ke5VWdWSA==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6897393.html#3824983" class="layer">#3楼</a>
+<a name="3824983" id="comment_anchor_3824983"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2017-10-29 10:50</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_3824983" href="https://home.cnblogs.com/u/1267709/" target="_blank">testboy</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_3824983" class="blog_comment_body">
+    到放弃是啥意思？
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;3824983&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;3824983&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(3858615, &#39;t2XSkpIte9GWEak+SlUAPDXET95P2ZZvx3tTUjLydYTe6AbnIGoyVQ==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(3858615, &#39;t2XSkpIte9GWEak+SlUAPDXET95P2ZZvx3tTUjLydYTe6AbnIGoyVQ==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6897393.html#3858615" class="layer">#4楼</a>
+<a name="3858615" id="comment_anchor_3858615"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2017-12-05 19:43</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_3858615" href="https://www.cnblogs.com/Mr-a2z/" target="_blank">水瓶座</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_3858615" class="blog_comment_body">
+    感谢整理啊
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;3858615&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;3858615&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_3858615_avatar" style="display:none">
+            https://pic.cnblogs.com/face/1271261/20171210161418.png
+        </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(4032479, &#39;MO5FNnFUI0QkRgecwNQ5WgEb7h2MN252013LLU1A1YoAEAFFIqzsvw==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(4032479, &#39;MO5FNnFUI0QkRgecwNQ5WgEb7h2MN252013LLU1A1YoAEAFFIqzsvw==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6897393.html#4032479" class="layer">#5楼</a>
+<a name="4032479" id="comment_anchor_4032479"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2018-07-31 14:16</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_4032479" href="https://www.cnblogs.com/javablogwang/" target="_blank">hbswyb</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_4032479" class="blog_comment_body">
+    写的不错，收获匪浅。发现一个用requests+lxml写的小型爬虫，包含爬虫各个模块。<a href="https://github.com/shuizhubocai/crawler" target="_blank">https://github.com/shuizhubocai/crawler</a>
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;4032479&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;4032479&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(4204001, &#39;chgK1zi0Z8c3r20zxWLUxLXPy73IVPO/kOTJskfzw/MneX3+2heG2g==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(4204001, &#39;chgK1zi0Z8c3r20zxWLUxLXPy73IVPO/kOTJskfzw/MneX3+2heG2g==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6897393.html#4204001" class="layer">#6楼</a>
+<a name="4204001" id="comment_anchor_4204001"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2019-03-16 10:02</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_4204001" href="https://www.cnblogs.com/chinash/" target="_blank">冬去秋未来</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_4204001" class="blog_comment_body">
+    开始学习，感谢！
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;4204001&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;4204001&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(4247236, &#39;Y4hxrj31DQNjMuJ+m4z3Bnw6IX3Vc6GIhywgl5ztf4FshJOgAJuv5w==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(4247236, &#39;Y4hxrj31DQNjMuJ+m4z3Bnw6IX3Vc6GIhywgl5ztf4FshJOgAJuv5w==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6897393.html#4247236" class="layer">#7楼</a>
+<a name="4247236" id="comment_anchor_4247236"></a>
+
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2019-05-05 09:51</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_4247236" href="https://home.cnblogs.com/u/1211957/" target="_blank">imWednesday</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_4247236" class="blog_comment_body">
+    开始学习,感谢分享.
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;4247236&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;4247236&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        
+
+                </div>
+            </div>
+        </div>
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;
+                    
+
+<span class="comment_actions">
+    <a href="javascript:void(0);" onclick="return ReplyComment(4282550, &#39;zLFflngYeUfMruzMF4SgMTKHLMzKLuFdxdilrKvDq905IxzPt9WKpw==&#39;)">
+        回复
+    </a>
+    <a href="javascript:void(0);" onclick="return QuoteComment(4282550, &#39;zLFflngYeUfMruzMF4SgMTKHLMzKLuFdxdilrKvDq905IxzPt9WKpw==&#39;)">
+        引用
+    </a>
+    
+    
+</span>
+
+
+                </div>
+                <!-- Title -->
+                
+<a href="https://www.cnblogs.com/zhaof/p/6897393.html#4282550" class="layer">#8楼</a>
+<a name="4282550" id="comment_anchor_4282550"></a>
+
+        <span id="comment-maxId" style="display:none">4282550</span>
+        <span id="comment-maxDate" style="display:none">2019/6/18 下午5:25:06</span>
+
+                <!-- PostDate -->
+                
+<span class="comment_date">2019-06-18 17:25</span>
+
+
+                <!--NameLink-->
+                
+
+            <a id="a_comment_author_4282550" href="https://www.cnblogs.com/duyi0922/" target="_blank">shuchuan</a>
+
+                <div class="feedbackCon">
+                    
+<div id="comment_body_4282550" class="blog_comment_body">
+    跟随大佬慢慢学习。
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;4282550&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;4282550&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_4282550_avatar" style="display:none">
+            https://pic.cnblogs.com/face/1660284/20190412193658.png
+        </span>
+
+                </div>
+            </div>
+        </div>
+
+
+<div id="comment_pager_bottom">
+    
+</div>
+</div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/zhaof/p/6897393.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/zhaof/p/6897393.html#top">返回顶部</a></div>
+    <div id="comment_form_container">
+<script type="text/javascript" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/mention.js.下载"></script>
+<div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+    昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="总是很懵逼">
+</p>
+<div class="commentbox_main">
+    <div class="commentbox_title">
+        <div class="commentbox_title_left">评论内容：</div>
+        <div class="commentbox_title_right">
+            <img id="ubb_quote" class="comment_icon" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+            <img id="ubb_bold" class="comment_icon" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+            <img id="ubb_url" class="comment_icon" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+            <img id="ubb_indent" class="comment_icon" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+            <img id="ubb_code" class="comment_icon" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+            <img id="ubb_img" class="comment_icon" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+        </div>
+    </div>
+    <div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+    <input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+    <span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+    <a href="javascript:void(0);" onclick="return logout();">退出</a>
+            <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+    [Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+    <span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+    <span id="span_parent_id"></span>
+    <span id="span_comment_replyto"></span>
+    <span id="span_comment_posted"></span>
+</div>
+</div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="http://clickc.admaster.com.cn/c/a131575,b3595121,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为云学生&#39;)">【推荐】华为云·云创校园套餐9元起，小天鹅音箱等你来拿</a><br><a href="http://clickc.admaster.com.cn/c/a131574,b3595115,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为云微认证&#39;)">【推荐】零基础轻松玩转云上产品，获壕礼加返百元大礼</a><br><a href="https://www.aliyun90.com/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-aliyun90&#39;)">【推荐】ALIYUN90% | 免认证  9秒注册阿里云  即开即用</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/gpt.js.下载"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;"></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="python爬虫从入门到放弃（一）之初识爬虫" href="https://www.cnblogs.com/111testing/p/10325210.html" target="_blank" onclick="clickRecomItmem(10325210)">python爬虫从入门到放弃（一）之初识爬虫</a><br>·  <a title="初识爬虫" href="https://www.cnblogs.com/bankechengzi/p/8523132.html" target="_blank" onclick="clickRecomItmem(8523132)">初识爬虫</a><br>·  <a title="爬虫（一）-之初识爬虫" href="https://www.cnblogs.com/sanqiansi/p/10300753.html" target="_blank" onclick="clickRecomItmem(10300753)">爬虫（一）-之初识爬虫</a><br>·  <a title="初识爬虫" href="https://www.cnblogs.com/e493825156/p/9055434.html" target="_blank" onclick="clickRecomItmem(9055434)">初识爬虫</a><br>·  <a title="初识爬虫" href="https://www.cnblogs.com/zr-hh199610/p/8706980.html" target="_blank" onclick="clickRecomItmem(8706980)">初识爬虫</a><br></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+            <script>
+                if (new Date() >= new Date(2018, 9, 13)) {
+                    googletag.cmd.push(function () { googletag.display("div-gpt-ad-1539008685004-0"); });
+                }
+            </script>
+        </div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/629860/" target="_blank">揭秘！在杭州，垃圾分类后，都去哪儿了？如何处理？</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/629859/" target="_blank">一线丨华米科技第二季度营收超10亿元 出货量增长53.7%</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/629858/" target="_blank">2019 年雨果奖公布</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/629857/" target="_blank">新浪发布2019年第二季度未经审计财报</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/629856/" target="_blank">基因密码被破译，牛油果爱好者有福了！</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>    </div>
+</div>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                
+<div id="sidebar_news" class="newsItem">
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    <br>
+<p style="font-size: 16px; padding: 10px; margin-bottom: 10px; background: #FFFFFF; border: 5px dashed #87CEEB">&nbsp;&nbsp;所有的努力都值得期许，每一份梦想都应该灌溉！
+</p>
+<hr>
+
+
+<img src="./python爬虫从入门到放弃（一）之初识爬虫 - python修行路 - 博客园_files/o_微信图片_20190611092123.jpg" width="250px">
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/zhaof/">
+            python修行路
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/zhaof/" title="入园时间：2016-07-24">
+            3年
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/zhaof/followers/">
+            1593
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/zhaof/followees/">
+            33
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0);" onclick="unfollow(&#39;f3c162f5-6351-e611-9fc1-ac853d9f53cc&#39;);">-取消关注</a></div>
+        <script>getFollowStatus('f3c162f5-6351-e611-9fc1-ac853d9f53cc');</script>
+    </div>
+</div></div>
+
+                <div id="calendar"><div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/07/19&#39;); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2019年8月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/09/19&#39;); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">28</td>
+                            <td class="CalOtherMonthDay" align="center">29</td>
+                            <td class="CalOtherMonthDay" align="center">30</td>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                        <td class="" align="center">
+                            2
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        3
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            4
+                        </td>
+                            <td class="" align="center">
+                                5
+                            </td>
+                            <td class="" align="center">
+                                6
+                            </td>
+                            <td class="" align="center">
+                                7
+                            </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                            <td class="" align="center">
+                                9
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            10
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            11
+                        </td>
+                            <td class="" align="center">
+                                12
+                            </td>
+                            <td class="" align="center">
+                                <a href="https://www.cnblogs.com/zhaof/archive/2019/08/13.html"><u>13</u></a>
+                            </td>
+                            <td class="" align="center">
+                                14
+                            </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                            <td class="" align="center">
+                                16
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            17
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            18
+                        </td>
+                            <td class="CalTodayDay" align="center">
+                                19
+                            </td>
+                            <td class="" align="center">
+                                20
+                            </td>
+                            <td class="" align="center">
+                                21
+                            </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                            <td class="" align="center">
+                                23
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            24
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            25
+                        </td>
+                            <td class="" align="center">
+                                26
+                            </td>
+                            <td class="" align="center">
+                                27
+                            </td>
+                            <td class="" align="center">
+                                28
+                            </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                            <td class="" align="center">
+                                30
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            31
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            1
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                4
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                5
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            7
+                        </td>
+                </tr>
+    </tbody>
+</table></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn">
+
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    
+</div>
+
+<!-- 常用链接 -->
+
+
+<!-- 最新随笔 -->
+<div id="sidebar_recentposts" class="sidebar-block">
+    
+<div class="catListEssay">
+    <h3 class="catListTitle">最新随笔</h3>
+    <ul>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/11346412.html">1.golang常用的http请求操作</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10581972.html">2.关于asyncio知识（四）</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10497070.html">3.关于asyncio知识（二）</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10479461.html">4.Python Every Class Needs a __repr__</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10446623.html">5.关于asyncio知识（一）</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10182903.html">6.linux环境快速安装python3</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10072934.html">7.从yield 到yield from再到python协程</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10024264.html">8.PEP 492 -- Coroutines with async and await syntax 翻译</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/10031945.html">9.一次python 内存泄漏解决过程</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/zhaof/p/9977179.html">10.关于python协程中aiorwlock 使用问题</a>
+
+                </li>
+    </ul>
+</div>
+
+</div>
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+<div class="catListTag">
+    <h3 class="catListTitle">我的标签</h3>
+    <ul>
+        
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/%E7%88%AC%E8%99%AB/">爬虫</a>(29)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/go%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">go基础学习</a>(25)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/asyncio/">asyncio</a>(7)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/java%E5%9F%BA%E7%A1%80/">java基础</a>(5)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/go%E5%AE%9E%E7%8E%B0%E6%B5%B7%E9%87%8F%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86/">go实现海量日志收集</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/python%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">python并发编程</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/SocketServer/">SocketServer</a>(3)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/go%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">go源码学习</a>(2)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/zhaof/tag/git/">git</a>(2)
+        </li>
+            <li>
+                <a href="https://www.cnblogs.com/zhaof/tag/">更多</a>
+            </li>
+
+    </ul>
+</div>
+
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    
+<div class="catListBlogRank">
+    <h3 class="catListTitle">积分与排名</h3>
+    <ul>
+        <li class="liScore">
+            积分 - 
+247303
+        </li>
+        <li class="liRank">
+            排名 - 
+1414
+        </li>
+    </ul>
+</div>
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div class="catListPostCategory">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+<span style="font-size:11px;font-weight:normal">(144)</span>
+
+
+            </h3>
+            <ul>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/918993.html" rel="">
+    Docker成长之路(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/1007401.html" rel="">
+    git(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/1015557.html" rel="">
+    Go(28)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/883845.html" rel="">
+    linux成长之路(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/858301.html" rel="">
+    python成长之路(72)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/1217469.html" rel="">
+    操作系统(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/1007686.html" rel="">
+    爬虫(27)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/category/926357.html" rel="">
+    生活感悟(5)
+</a>
+
+                            
+
+                        </li>
+                        
+            </ul>
+        </div>
+        <div class="catListPostArchive">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+<span style="font-size:11px;font-weight:normal">(140)</span>
+
+
+            </h3>
+            <ul>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2019/08.html" rel="">
+    2019年8月(1)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2019/03.html" rel="">
+    2019年3月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2019/02.html" rel="">
+    2019年2月(1)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/12.html" rel="">
+    2018年12月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/11.html" rel="">
+    2018年11月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/10.html" rel="">
+    2018年10月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/09.html" rel="">
+    2018年9月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/07.html" rel="">
+    2018年7月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/06.html" rel="">
+    2018年6月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/05.html" rel="">
+    2018年5月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/04.html" rel="">
+    2018年4月(6)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/03.html" rel="">
+    2018年3月(12)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/02.html" rel="">
+    2018年2月(6)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2018/01.html" rel="">
+    2018年1月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/12.html" rel="">
+    2017年12月(5)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/11.html" rel="">
+    2017年11月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/10.html" rel="">
+    2017年10月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/09.html" rel="">
+    2017年9月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/08.html" rel="">
+    2017年8月(7)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/07.html" rel="">
+    2017年7月(12)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/06.html" rel="">
+    2017年6月(11)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/05.html" rel="">
+    2017年5月(7)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/03.html" rel="">
+    2017年3月(1)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/02.html" rel="">
+    2017年2月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2017/01.html" rel="">
+    2017年1月(7)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/12.html" rel="">
+    2016年12月(8)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/11.html" rel="">
+    2016年11月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/10.html" rel="">
+    2016年10月(3)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/09.html" rel="">
+    2016年9月(4)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/08.html" rel="">
+    2016年8月(6)
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhaof/archive/2016/07.html" rel="">
+    2016年7月(2)
+</a>
+
+                            
+
+                        </li>
+                        
+            </ul>
+        </div>
+        <div class="catList">
+            <h3 class="catListTitle">
+                
+
+友链
+<span style="font-size:11px;font-weight:normal">(0)</span>
+
+
+            </h3>
+            <ul>
+                        <li>
+                            
+<a href="https://fashengba.com/" rel="nofollow">
+    发声吧
+</a>
+
+                            
+
+                        </li>
+                        
+                        <li>
+                            
+<a href="https://www.syncd.cn/" rel="nofollow">
+    个人博客站
+</a>
+
+                            
+
+                        </li>
+                        
+            </ul>
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    
+<div id="recent_comments_wrap">
+    <h3 class="catListTitle">最新评论</h3>
+    <div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/8126306.html#4329522">1. Re:让你用sublime写出最完美的python代码--windows环境</a></li>
+                    <li class="recent_comment_body">大佬，最后一步设置，掉了大括号。</li>
+                    <li class="recent_comment_author">--xiaoxiao同学</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/7345856.html#4322900">2. Re:Python爬虫从入门到放弃（二十三）之 Scrapy的中间件Downloader Middleware实现User-Agent随机切换</a></li>
+                    <li class="recent_comment_body">我还是不懂 RandomUserAgentMiddleware 下的 process_request 就能随机切换UA 他不是只在请求头设置了 User-Agent=“random” 吗 为什么就能随...</li>
+                    <li class="recent_comment_author">--性感码农在线代码</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/7306374.html#4322866">3. Re:Python爬虫从入门到放弃（二十）之 Scrapy分布式原理</a></li>
+                    <li class="recent_comment_body">请问为什么不配置pipeline 掉进redis不是更好吗？</li>
+                    <li class="recent_comment_author">--性感码农在线代码</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/8490045.html#4319684">4. Re:python中重要的模块--asyncio</a></li>
+                    <li class="recent_comment_body">厉害啊 博主  望以后可以多多交流</li>
+                    <li class="recent_comment_author">--_尼欧`</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhaof/p/8126306.html#4316805">5. Re:让你用sublime写出最完美的python代码--windows环境</a></li>
+                    <li class="recent_comment_body">可以可以，真的很详细</li>
+                    <li class="recent_comment_author">--我不玩博客</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    
+<div id="topview_posts_wrap">
+    <h3 class="catListTitle">阅读排行榜</h3>
+    <div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6953241.html">
+                            1. python爬虫从入门到放弃（八）之 Selenium库的使用(194995)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6930955.html">
+                            2. python爬虫从入门到放弃（六）之 BeautifulSoup库的使用(114813)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6910871.html">
+                            3. python爬虫从入门到放弃（三）之 Urllib库的基本使用(108731)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6898138.html">
+                            4. python爬虫从入门到放弃（二）之爬虫的原理(100170)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6915127.html">
+                            5. python爬虫从入门到放弃（四）之 Requests库的基本使用(78642)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    
+<div id="topfeedback_posts_wrap">
+    <h3 class="catListTitle">评论排行榜</h3>
+    <div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/7326260.html">
+                            1. Python爬虫从入门到放弃（二十二）之 爬虫与反爬虫大战(30)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6925674.html">
+                            2. python爬虫从入门到放弃（五）之 正则的基本使用(25)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/6915127.html">
+                            3. python爬虫从入门到放弃（四）之 Requests库的基本使用(20)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/8490045.html">
+                            4. python中重要的模块--asyncio(18)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhaof/p/8126306.html">
+                            5. 让你用sublime写出最完美的python代码--windows环境(16)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/7326260.html">
+                                1. Python爬虫从入门到放弃（二十二）之 爬虫与反爬虫大战(28)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/6953241.html">
+                                2. python爬虫从入门到放弃（八）之 Selenium库的使用(22)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/6915127.html">
+                                3. python爬虫从入门到放弃（四）之 Requests库的基本使用(22)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/6898138.html">
+                                4. python爬虫从入门到放弃（二）之爬虫的原理(14)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhaof/p/6897393.html">
+                                5. python爬虫从入门到放弃（一）之初识爬虫(11)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright © 2019 python修行路
+    <div id="poweredby">Powered by .NET Core 3.0 Preview 8 on Linux</div>
+
+    </div>
+</div>
+
+    
+
+
+</body></html>
